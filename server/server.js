@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authroutes");
 const cors = require("cors");
+const taskRoutes = require("./routes/taskRoutes");
 
 dotenv.config();
 connectDB();
@@ -20,6 +21,7 @@ app.get("/health", async(req, res) => {
 })
 
 app.use("/api/auth", authRoutes);
+app.use("/api/tasks", taskRoutes);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

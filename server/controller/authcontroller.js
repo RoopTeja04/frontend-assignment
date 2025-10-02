@@ -13,7 +13,7 @@ exports.registerUser = async (req, res) => {
 
         const user = await User.create({ name, email, password: hashedPassword });
 
-        res.status(201).json({ message: "User registered successfully" });
+        res.status(201).json({ message: `${user.name} registered successfully` });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -31,10 +31,38 @@ exports.loginUser = async (req, res) => {
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
 
-        res.json({
+        res.status(201).json({
             token,
             user: { id: user._id, name: user.name, email: user.email }
         });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+exports.getProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.user).select("-password");
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+exports.updateProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.user);
+        if (!user) return res.status(404).json({ message: "User not found" });
+
+        user.name = req.body.name || user.name;
+        user.email = req.body.email || user.email;
+
+        if (req.body.password) {
+            user.password = await bcrypt.hash(req.body.password, 10);
+        }
+
+        await user.save();
+        res.json({ message: "Profile updated", user: { id: user._id, name: user.name, email: user.email } });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
