@@ -26,8 +26,9 @@ It demonstrates **Authentication, Dashboard with CRUD, Protected Routes, and Bac
 ---
 
 ## 🚀 Live Demo
-- Frontend: 
-- Backend: 
+
+- Frontend: [![Frontend](https://img.shields.io/badge/Frontend-Live-blue?style=for-the-badge&logo=react)](https://frontend-assignment-sand-kappa.vercel.app/)
+- Backend: [![Backend](https://img.shields.io/badge/Backend-Live-green?style=for-the-badge&logo=node.js)](https://frontend-assignment-sa3w.onrender.com)
 
 ## 📌 API Documentation
 
