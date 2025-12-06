@@ -1,7 +1,6 @@
 
-# MERN Scalable Web App - Frontend Developer Intern Assignment
-
-This project is built as part of the **Frontend Developer Intern Assignment**.  
+# MERN Scalable Web App 
+.  
 It demonstrates **Authentication, Dashboard with CRUD, Protected Routes, and Backend Integration** using the **MERN stack**.
 
 ---
